@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "Entry": {
+      "title": "Journal Entry",
+      "description": "A reflection session containing multi-turn conversation messages and extracted structured memory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "mood": { "type": "string" },
+        "moodScore": { "type": "number" },
+        "themes": { "type": "array" },
+        "people": { "type": "array" },
+        "events": { "type": "array" },
+        "location": { "type": "string" },
+        "goals": { "type": "array" },
+        "decisionId": { "type": "string" }
+      },
+      "required": ["id", "userId", "createdAt", "summary", "mood", "moodScore"]
+    },
+    "Decision": {
+      "title": "Decision Item",
+      "description": "A tracked significant decision with confidence, reasoning, and retrospective outcome",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "decision": { "type": "string" },
+        "reasoning": { "type": "string" },
+        "confidence": { "type": "number" },
+        "expectedOutcome": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "reviewDate": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "userId", "decision", "confidence", "createdAt", "status"]
+    },
+    "Rewind": {
+      "title": "Life Rewind Report",
+      "description": "An interactive period synthesis of emotions, trends, patterns, and memorable quotes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "period": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "totalReflections": { "type": "number" },
+        "dominantMood": { "type": "string" },
+        "averageMoodScore": { "type": "number" },
+        "narrativeSummary": { "type": "string" }
+      },
+      "required": ["id", "userId", "period", "createdAt", "dominantMood"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}/entries/{entryId}": {
+      "schema": "Entry",
+      "description": "User private reflection sessions and structured memories"
+    },
+    "/users/{uid}/decisions/{decisionId}": {
+      "schema": "Decision",
+      "description": "User tracked decision ledger and retrospectives"
+    },
+    "/users/{uid}/rewinds/{rewindId}": {
+      "schema": "Rewind",
+      "description": "User generated life rewinds and emotional pattern syntheses"
+    }
+  }
+}

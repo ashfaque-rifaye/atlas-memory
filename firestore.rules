@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Memory Atlas Security Constitution:
+    // 1. All personal reflection data MUST be scoped under the authenticated Firebase UID.
+    // 2. Strict owner-based isolation: request.auth.uid == uid.
+    // 3. Prevent cross-user access, queries, or tampering.
+    // 4. Deny all by default.
+
+    match /users/{uid} {
+      // User profile document
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      // User private journal reflection entries
+      match /entries/{entryId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // User extracted structured memories
+      match /memories/{memoryId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // User decision ledger
+      match /decisions/{decisionId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // User generated life rewinds
+      match /rewinds/{rewindId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    // Default deny rule for any unspecified collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

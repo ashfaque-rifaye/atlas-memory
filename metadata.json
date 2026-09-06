@@ -1,0 +1,6 @@
+{
+  "name": "Memory Atlas",
+  "description": "A private AI reflection companion that transforms multi-turn conversations into structured memories, life rewinds, decision tracking, and pattern discovery.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

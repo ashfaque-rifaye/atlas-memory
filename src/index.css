@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #171410;
+  --panel: #1E1B16;
+  --panel2: #252118;
+  --line: #312C24;
+  --hair: #241F1A;
+  --text: #EFE9DE;
+  --text2: #ADA59A;
+  --text3: #8B8377;
+  --accent: #93BCA1;
+  --accent-dim: #28362C;
+  --accent-line: #3C5245;
+  --clay: #C79A7A;
+  --clay-dim: #3A2C22;
+  --shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] {
+  --bg: #F3EFE7;
+  --panel: #FBF8F1;
+  --panel2: #EDE8DD;
+  --line: #DFD8C9;
+  --hair: #E8E2D6;
+  --text: #201E1A;
+  --text2: #655E53;
+  --text3: #7C7568;
+  --accent: #3F6A50;
+  --accent-dim: #E3ECE4;
+  --accent-line: #C3D5C8;
+  --clay: #8E5B36;
+  --clay-dim: #F0E4D8;
+  --shadow: 0 18px 40px -30px rgba(60, 50, 35, 0.4);
+}
+
+@layer base {
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.011em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--accent-dim);
+    color: var(--text);
+  }
+
+  textarea, input, button, select {
+    font-family: inherit;
+  }
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace, ui-monospace;
+}
+
+.font-sans {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@keyframes sweep {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.animate-rise {
+  animation: rise 0.45s ease both;
+}
+
+.animate-fade {
+  animation: fade 0.4s ease both;
+}
+
+.animate-sweep {
+  transform-origin: left;
+  animation: sweep 0.7s ease both;
+}
+
+.animate-caret {
+  animation: caret 0.9s infinite;
+}
+
